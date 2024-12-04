@@ -1,0 +1,54 @@
+.header__container{
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+max-height: max-content;
+}
+.header__left_container , .header__right_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.header__menu_container{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    min-width: 50%;
+}
+.header__menu_item{
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.header__logo_container{
+    max-width: 180px;
+}
+.header__logo_img{
+    width: 100%;
+    height: 100%;
+}
+.header__dropdown_{
+    outline: none;
+    border:none;
+    padding: 5px;
+    border-radius: 5px;
+}
+.header__btn_container{
+    padding: 5px 5px;
+    cursor: pointer;
+
+}
+.header__signup_btn{
+    padding: 8px 15px;
+    border-radius: 10px;
+    background-color: #6f30f8;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
