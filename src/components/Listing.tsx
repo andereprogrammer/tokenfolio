@@ -2,10 +2,14 @@ import "./../styles/listing.css";
 import { useCoinContext } from "../hooks/useCoinContext";
 import useSearchCoins from "../hooks/useSearchCoins";
 import ListingCard from "./ListingCard";
+import { useEffect } from "react";
 
 function Listing() {
-  const { coins } = useCoinContext();
+  const { coins, searchQuery } = useCoinContext();
   const { coinsSearched } = useSearchCoins(coins);
+  useEffect(() => {
+    console.log(searchQuery);
+  }, [searchQuery]);
 
   return (
     <div className="listing__">
@@ -17,11 +21,9 @@ function Listing() {
         <div>Market cap</div>
       </div>
       <div className="listing__list-container">
-        {(coinsSearched.length > 0 ? coinsSearched : coins).map(
-          (item, index) => {
-            return <ListingCard item={item} index={index} />;
-          }
-        )}
+        {(searchQuery.length > 0 ? coinsSearched : coins).map((item, index) => {
+          return <ListingCard item={item} index={index} />;
+        })}
       </div>
     </div>
   );

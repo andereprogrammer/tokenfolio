@@ -17,12 +17,18 @@ function SearchBar() {
     setSearchQuery(term);
     setSearchTerm(term);
   };
+  const handleKeyInput = (e: any) => {
+    setSearchTerm(e.target.value);
+    if (e.target.value.length === 0) {
+      setSearchQuery("");
+    }
+  };
 
   return (
     <>
       <div className="search__container">
         <input
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleKeyInput}
           className="search__input"
           type="text"
           value={searchTerm}
