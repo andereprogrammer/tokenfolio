@@ -2,9 +2,8 @@ import { useState } from "react";
 import "./../styles/searchbar.css";
 import useSearchCoins from "../hooks/useSearchCoins";
 import { useCoinContext } from "../hooks/useCoinContext";
-type Props = {};
 
-function SearchBar({}: Props) {
+function SearchBar() {
   const { coins, setSearchQuery } = useCoinContext();
   const [searchTerm, setSearchTerm] = useState("");
   const { searchHistory, clearHistory } = useSearchCoins(coins);

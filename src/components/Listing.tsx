@@ -1,12 +1,9 @@
-import { useEffect } from "react";
 import "./../styles/listing.css";
 import { useCoinContext } from "../hooks/useCoinContext";
 import useSearchCoins from "../hooks/useSearchCoins";
 import ListingCard from "./ListingCard";
 
-type Props = {};
-
-function Listing({}: Props) {
+function Listing() {
   const { coins } = useCoinContext();
   const { coinsSearched } = useSearchCoins(coins);
 

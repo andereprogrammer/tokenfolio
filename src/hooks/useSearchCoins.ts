@@ -1,15 +1,5 @@
 import { useState, useEffect } from "react";
-import { useCoinContext } from "./useCoinContext";
-
-type Coin = {
-  id: string;
-  symbol: string;
-  name: string;
-  current_price: number;
-  market_cap: number;
-  image: string;
-  price_change_percentage_24h: string;
-};
+import { Coin, useCoinContext } from "./useCoinContext";
 
 const useSearchCoins = (allCoins: Coin[]) => {
   const [coinsSearched, setCoinsSearched] = useState<Coin[]>([]);

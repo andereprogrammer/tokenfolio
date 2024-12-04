@@ -40,7 +40,6 @@ export const CoinProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(currency);
     const fetchCoins = async () => {
       setLoading(true);
       try {

@@ -1,10 +1,8 @@
-import React from "react";
 import "./../styles/header.css";
 import { useCoinContext } from "../hooks/useCoinContext";
 import { currencySymbols } from "./ListingCard";
-type Props = {};
 
-function Header({}: Props) {
+function Header() {
   const menu = ["home", "list", "about", "exchange"];
   const { currency, setCurrency } = useCoinContext();
   return (
