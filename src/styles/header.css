@@ -1,49 +1,74 @@
-.header__container{
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-max-height: max-content;
-}
-.header__left_container , .header__right_container{
+.header__container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    max-height: max-content;
+    flex-wrap: wrap; /* Ensures elements wrap on smaller screens */
+    padding: 10px;
+  }
+  
+  .header__left_container,
+  .header__right_container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
-}
-.header__menu_container{
+  }
+  
+  .header__menu_container {
     display: flex;
     justify-content: center;
     gap: 20px;
     align-items: center;
     min-width: 50%;
-}
-.header__menu_item{
+  }
+  
+  .header__menu_item {
     cursor: pointer;
     font-size: 18px;
     font-weight: 400;
     text-transform: capitalize;
     letter-spacing: 1px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-.header__logo_container{
+  }
+  
+  .header__logo_container {
     max-width: 180px;
-}
-.header__logo_img{
+  }
+  
+  .header__logo_img {
     width: 100%;
     height: 100%;
-}
-.header__dropdown_{
+  }
+  
+  .header__dropdown_ {
     outline: none;
-    border:none;
+    border: none;
     padding: 5px;
     border-radius: 5px;
-}
-.header__btn_container{
+  }
+  
+  .header__btn_container {
     padding: 5px 5px;
     cursor: pointer;
-
-}
-.header__signup_btn{
+  }
+  .header__burger_icon {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .burger__line {
+    background-color: #fff;
+    height: 3px;
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .header__signup_btn {
     padding: 8px 15px;
     border-radius: 10px;
     background-color: #6f30f8;
@@ -51,4 +76,78 @@ max-height: max-content;
     border: none;
     outline: none;
     cursor: pointer;
-}
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .header__container {
+      flex-direction: row; /* Stack elements vertically */
+      align-items: flex-start; /* Align items to the left */
+      padding: 10px;
+      justify-content: space-between;
+    }
+  
+    .header__menu_container {
+      flex-direction: column; /* Stack menu items vertically */
+      gap: 10px;
+      align-items: flex-start; /* Align items to the left */
+      min-width: 100%;
+    }
+  
+    .header__menu_item {
+      font-size: 16px; /* Adjust font size for smaller screens */
+    }
+  
+    .header__logo_container {
+      max-width: 90px; /* Adjust logo size */
+    }
+  
+    .header__signup_btn {
+      width: 100%; /* Make the signup button full-width */
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header__menu_item {
+      font-size: 14px; /* Further reduce font size for very small screens */
+    }
+  
+    .header__signup_btn {
+      padding: 10px; 
+    }
+  }
+  @media (max-width: 768px) {
+    /* Burger Icon */
+    .header__burger_icon {
+      display: flex;
+    }
+  
+    /* Menu */
+    .header__menu_container {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      flex-direction: column;
+      gap: 15px;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      color: #000;
+    }
+  
+    .header__menu_container.show {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  
+    .header__menu_item {
+      font-size: 16px;
+      text-align: center;
+    }
+  }

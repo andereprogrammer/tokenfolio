@@ -13,9 +13,13 @@ function Listing() {
 
   return (
     <div className="listing__">
-      <div className="listing__container">
+      <div
+        role="row"
+        aria-label="Crypto Listing Header"
+        className="listing__container"
+      >
         <div>#</div>
-        <div>Coins</div>
+        <div>Name</div>
         <div>Price</div>
         <div>24H change</div>
         <div>Market cap</div>

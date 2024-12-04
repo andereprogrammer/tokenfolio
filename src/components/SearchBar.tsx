@@ -31,6 +31,7 @@ function SearchBar() {
           onChange={handleKeyInput}
           className="search__input"
           type="text"
+          placeholder="Search symbol,name.coins.."
           value={searchTerm}
           onKeyUp={(e) => {
             console.log(e.key.includes("Enter"));

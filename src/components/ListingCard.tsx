@@ -21,9 +21,27 @@ function ListingCard({ item, index }: ListingCardProps) {
   const symbol = currencySymbols[currency] || currency;
 
   return (
-    <div className="listing__card" key={item.id || index}>
-      <div>{index + 1}</div>
-      <div className="listing__image-container">
+    <div
+      role="row"
+      aria-labelledby={`crypto-${index}`}
+      className="listing__card"
+      key={item.id || index}
+    >
+      <div className="mobile horizontal">
+        <div className="listing__image-container">
+          <img
+            width={"100%"}
+            height={"100%"}
+            src={item.image}
+            alt={item.name || "coin"}
+          />
+        </div>
+        <div className="">
+          {item.name} <br />
+          {item.symbol}
+        </div>
+      </div>
+      <div className="listing__image-container desktop">
         <img
           width={"100%"}
           height={"100%"}
@@ -31,11 +49,38 @@ function ListingCard({ item, index }: ListingCardProps) {
           alt={item.name || "coin"}
         />
       </div>
-      <div>
+      <div className="desktop">
+        {item.name} <br />
+        {item.symbol}
+      </div>
+      <div className="mobile">
+        <div className="mobile-left">
+          {symbol} {item.current_price?.toLocaleString() || "N/A"}
+        </div>
+        <div
+          aria-label="24H Change"
+          className={`listing__item-24h mobile-left flex-row${
+            parseInt(item.price_change_percentage_24h) < 0 ? "negative" : ""
+          }`}
+        >
+          <p>{symbol}</p>
+          <p>
+            {item.price_change_percentage_24h !== undefined
+              ? (
+                  Math.floor(parseInt(item.price_change_percentage_24h) * 100) /
+                  100
+                ).toFixed(2)
+              : "N/A"}
+          </p>
+        </div>
+      </div>
+
+      <div className="desktop">
         {symbol} {item.current_price?.toLocaleString() || "N/A"}
       </div>
       <div
-        className={`listing__item-24h ${
+        aria-label="24H Change"
+        className={`listing__item-24h desktop${
           parseInt(item.price_change_percentage_24h) < 0 ? "negative" : ""
         }`}
       >
@@ -49,8 +94,8 @@ function ListingCard({ item, index }: ListingCardProps) {
             : "N/A"}
         </p>
       </div>
-      <div>
-        {symbol} {item.market_cap?.toLocaleString() || "N/A"}
+      <div className="desktop">
+        {symbol} {item.market_cap.toPrecision(5) || "N/A"}
       </div>
     </div>
   );
