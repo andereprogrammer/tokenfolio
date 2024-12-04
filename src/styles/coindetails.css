@@ -1,0 +1,13 @@
+.coin_page__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 5px;
+  }
+  

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Coin, useCoinContext } from "../hooks/useCoinContext";
 
 type ListingCardProps = {
@@ -21,7 +22,8 @@ function ListingCard({ item, index }: ListingCardProps) {
   const symbol = currencySymbols[currency] || currency;
 
   return (
-    <div
+    <Link
+      to={`/coin/${item.id}`}
       role="row"
       aria-labelledby={`crypto-${index}`}
       className="listing__card"
@@ -97,7 +99,7 @@ function ListingCard({ item, index }: ListingCardProps) {
       <div className="desktop">
         {symbol} {item.market_cap.toPrecision(5) || "N/A"}
       </div>
-    </div>
+    </Link>
   );
 }
 

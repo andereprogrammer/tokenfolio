@@ -2,6 +2,7 @@ import "./../styles/header.css";
 import { useCoinContext } from "../hooks/useCoinContext";
 import { currencySymbols } from "./ListingCard";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   const menu = ["home", "list", "about", "exchange"];
@@ -27,9 +28,9 @@ function Header() {
       <div className={`header__menu_container ${isMenuOpen ? "show" : ""}`}>
         {menu.map((item, index) => {
           return (
-            <p className="header__menu_item" key={index}>
+            <Link to={"/"} className="header__menu_item" key={index}>
               {item}
-            </p>
+            </Link>
           );
         })}
       </div>

@@ -1,9 +1,7 @@
 import SearchBar from "./SearchBar";
 import "./../styles/hero.css";
 
-type Props = {};
-
-function Hero({}: Props) {
+function Hero() {
   return (
     <div className="hero__container">
       <h1 className="hero__title">

@@ -10,6 +10,38 @@ export type Coin = {
   image: string;
   price_change_percentage_24h: string;
 };
+interface CoinDetails {
+  name: string;
+  symbol: string;
+  id: string;
+  image: {
+    thumb: string;
+    small?: string;
+    large?: string;
+  };
+  market_data: {
+    current_price: {
+      usd: number;
+      [key: string]: number;
+    };
+    market_cap: {
+      usd: number;
+      [key: string]: number;
+    };
+    high_24h: {
+      usd: number;
+      [key: string]: number;
+    };
+    low_24h: {
+      usd: number;
+      [key: string]: number;
+    };
+  };
+  links: {
+    homepage: string[];
+    [key: string]: any;
+  };
+}
 
 type CoinContextType = {
   coins: Coin[];
@@ -20,6 +52,9 @@ type CoinContextType = {
   searchQuery: string;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   loading: boolean;
+  setCoinId: React.Dispatch<React.SetStateAction<string>>;
+  coinId: string;
+  coinDetails: CoinDetails;
 };
 
 export const CoinProviderContext = React.createContext<CoinContextType>({
@@ -31,6 +66,36 @@ export const CoinProviderContext = React.createContext<CoinContextType>({
   searchQuery: "",
   setLoading: () => {},
   loading: false,
+  setCoinId: () => {},
+  coinId: "",
+  coinDetails: {
+    name: "",
+    id: "",
+
+    symbol: "",
+    image: {
+      thumb: "",
+      small: "",
+      large: "",
+    },
+    market_data: {
+      current_price: {
+        usd: 0,
+      },
+      market_cap: {
+        usd: 0,
+      },
+      high_24h: {
+        usd: 0,
+      },
+      low_24h: {
+        usd: 0,
+      },
+    },
+    links: {
+      homepage: [""],
+    },
+  },
 });
 
 export const CoinProvider = ({ children }: { children: ReactNode }) => {
@@ -38,6 +103,47 @@ export const CoinProvider = ({ children }: { children: ReactNode }) => {
   const [currency, setCurrency] = useState("usd");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [coinDetails, setCoinDetails] = useState({
+    name: "",
+    symbol: "",
+    id: "",
+    image: {
+      thumb: "",
+      small: "",
+      large: "",
+    },
+    market_data: {
+      current_price: {
+        usd: 0,
+      },
+      market_cap: {
+        usd: 0,
+      },
+      high_24h: {
+        usd: 0,
+      },
+      low_24h: {
+        usd: 0,
+      },
+    },
+    links: {
+      homepage: [""],
+    },
+  });
+  const [coinId, setCoinId] = useState("");
+
+  useEffect(() => {
+    const fetchCoinDetails = async () => {
+      const response = await fetch(
+        `https://api.coingecko.com/api/v3/coins/${coinId}`
+      );
+      const data = await response.json();
+      setCoinDetails(data);
+    };
+    if (coinId) {
+      fetchCoinDetails();
+    }
+  }, [coinId]);
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -76,6 +182,9 @@ export const CoinProvider = ({ children }: { children: ReactNode }) => {
         setSearchQuery,
         setLoading,
         loading,
+        setCoinId,
+        coinId,
+        coinDetails,
       }}
     >
       {children}
