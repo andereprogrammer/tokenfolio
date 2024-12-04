@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./../styles/searchbar.css";
 import useSearchCoins from "../hooks/useSearchCoins";
 import { useCoinContext } from "../hooks/useCoinContext";
@@ -7,11 +7,16 @@ type Props = {};
 function SearchBar({}: Props) {
   const { coins, setSearchQuery } = useCoinContext();
   const [searchTerm, setSearchTerm] = useState("");
-  const { searchQuery, searchHistory, clearHistory } = useSearchCoins(coins);
+  const { searchHistory, clearHistory } = useSearchCoins(coins);
+
   const handleClear = () => {
     clearHistory();
     setSearchTerm("");
     setSearchQuery("");
+  };
+  const handleSearchHisClick = (term: string) => {
+    setSearchQuery(term);
+    setSearchTerm(term);
   };
 
   return (
@@ -21,9 +26,13 @@ function SearchBar({}: Props) {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="search__input"
           type="text"
-          name=""
-          id=""
           value={searchTerm}
+          onKeyUp={(e) => {
+            console.log(e.key.includes("Enter"));
+            if (e.key.includes("Enter") && searchTerm.length > 3) {
+              setSearchQuery(searchTerm);
+            }
+          }}
         />
         <button
           onClick={() => setSearchQuery(searchTerm)}
@@ -37,17 +46,11 @@ function SearchBar({}: Props) {
           width: "100%",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-            justifyContent: "flex-start",
-          }}
-        >
+        <div className="search__history-container">
           {searchHistory.map((item, index) => {
             return (
               <div
-                onClick={() => setSearchQuery(item)}
+                onClick={() => handleSearchHisClick(item)}
                 style={{
                   color: "#000",
                   backgroundColor: "#fff",

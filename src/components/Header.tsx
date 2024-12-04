@@ -6,7 +6,7 @@ type Props = {};
 
 function Header({}: Props) {
   const menu = ["home", "list", "about", "exchange"];
-  const { coins, currency, setCurrency } = useCoinContext();
+  const { currency, setCurrency } = useCoinContext();
   return (
     <div className="header__container">
       <div className="header__left_container">

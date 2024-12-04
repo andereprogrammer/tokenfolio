@@ -43,9 +43,11 @@
   
   .listing__item-24h {
     color: green;
+    display: flex;
   }
   
   .listing__item-24h.negative {
     color: red;
+    display: flex;
   }
   

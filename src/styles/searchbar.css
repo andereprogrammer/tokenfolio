@@ -32,3 +32,9 @@
     font-weight: 500;
     cursor: pointer;
 }
+
+.search__history-container{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+  }

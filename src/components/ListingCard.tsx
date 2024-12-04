@@ -1,7 +1,6 @@
-import React from "react";
 import { Coin, useCoinContext } from "../hooks/useCoinContext";
 
-type Props = {
+type ListingCardProps = {
   item: Coin;
   index: number;
 };
@@ -16,7 +15,7 @@ export const currencySymbols: { [key: string]: string } = {
   cad: "C$",
 };
 
-function ListingCard({ item, index }: Props) {
+function ListingCard({ item, index }: ListingCardProps) {
   const { currency } = useCoinContext();
 
   const symbol = currencySymbols[currency] || currency;
@@ -35,7 +34,12 @@ function ListingCard({ item, index }: Props) {
       <div>
         {symbol} {item.current_price?.toLocaleString() || "N/A"}
       </div>
-      <div className="listing__item-24h">
+      <div
+        className={`listing__item-24h ${
+          parseInt(item.price_change_percentage_24h) < 0 ? "negative" : ""
+        }`}
+      >
+        <p>{symbol}</p>
         <p>
           {item.price_change_percentage_24h !== undefined
             ? (
@@ -44,7 +48,6 @@ function ListingCard({ item, index }: Props) {
               ).toFixed(2)
             : "N/A"}
         </p>
-        <p>{symbol}</p>
       </div>
       <div>
         {symbol} {item.market_cap?.toLocaleString() || "N/A"}
