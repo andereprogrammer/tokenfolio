@@ -29,6 +29,7 @@ const LineChart = () => {
     <div
       style={{
         width: "800px",
+        marginTop: "30px",
       }}
     >
       {coinData.length > 0 ? (

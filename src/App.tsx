@@ -7,20 +7,17 @@ import Header from "./components/Header";
 import Loader from "./components/Loader";
 
 function App() {
-  const { loading } = useCoinContext();
-
   return (
     <div className="App">
-      <BrowserRouter>
-        <CoinProvider>
+      <CoinProvider>
+        <BrowserRouter>
           <Header />
-          {loading ? <Loader /> : null}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/coin/:id" element={<Coin />} />
           </Routes>
-        </CoinProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </CoinProvider>
     </div>
   );
 }

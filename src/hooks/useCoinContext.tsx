@@ -134,11 +134,14 @@ export const CoinProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const fetchCoinDetails = async () => {
+      setLoading(true);
+
       const response = await fetch(
         `https://api.coingecko.com/api/v3/coins/${coinId}`
       );
       const data = await response.json();
       setCoinDetails(data);
+      setLoading(false);
     };
     if (coinId) {
       fetchCoinDetails();

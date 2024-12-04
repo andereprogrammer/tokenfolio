@@ -4,10 +4,12 @@ import { useCoinContext } from "../hooks/useCoinContext";
 import { useEffect } from "react";
 import Coindetails from "../components/Coindetails";
 import "./../styles/coindetails.css";
+import Loader from "../components/Loader";
 
 function Coin() {
   const { id } = useParams();
-  const { setCoinId } = useCoinContext();
+  const { setCoinId, loading } = useCoinContext();
+
   useEffect(() => {
     if (id) {
       setCoinId(id);
@@ -15,6 +17,7 @@ function Coin() {
   }, []);
   return (
     <div className="coin_page__container">
+      {loading ? <Loader /> : null}
       <LineChart />
       <Coindetails />
     </div>
