@@ -4,13 +4,13 @@ import { useCoinContext } from "../hooks/useCoinContext";
 
 const LineChart = () => {
   const [coinData, setCoinData] = useState([]);
-  const { setLoading } = useCoinContext();
+  const { setLoading, currency } = useCoinContext();
 
   useEffect(() => {
     const fetchCoinData = async () => {
       setLoading(true);
       const res = await fetch(
-        "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7"
+        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${currency}&days=7`
       );
       const data = await res.json();
       const formattedData = data.prices.map((priceData: any) => [
@@ -23,20 +23,20 @@ const LineChart = () => {
     };
 
     fetchCoinData();
-  }, []);
+  }, [currency]);
 
   return (
     <div
       style={{
-        width: "800px",
-        marginTop: "30px",
+        maxWidth: "600px",
+        margin: "auto",
+        height: "250px",
       }}
     >
       {coinData.length > 0 ? (
         <Chart
           chartType="LineChart"
-          width="100%"
-          height="400px"
+          height="100%"
           data={coinData}
           options={{
             title: "Bitcoin Price (Last 7 Days)",

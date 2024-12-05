@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import LineChart from "../components/LineChart";
 import { useCoinContext } from "../hooks/useCoinContext";
 import { useEffect } from "react";
@@ -18,7 +18,9 @@ function Coin() {
   return (
     <div className="coin_page__container">
       {loading ? <Loader /> : null}
-      <LineChart />
+      <Link to={"/"} className="go-back">
+        Go back
+      </Link>
       <Coindetails />
     </div>
   );

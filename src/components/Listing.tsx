@@ -17,7 +17,7 @@ function Listing() {
       <div
         role="row"
         aria-label="Crypto Listing Header"
-        className="listing__container"
+        className="listing__container header"
       >
         <div>#</div>
         <div>Name</div>

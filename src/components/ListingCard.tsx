@@ -20,6 +20,8 @@ function ListingCard({ item, index }: ListingCardProps) {
   const { currency } = useCoinContext();
 
   const symbol = currencySymbols[currency] || currency;
+  const formatValue = (value: any) =>
+    value < 0.01 ? value.toExponential(2) : value.toFixed(2);
 
   return (
     <Link
@@ -52,12 +54,11 @@ function ListingCard({ item, index }: ListingCardProps) {
         />
       </div>
       <div className="desktop">
-        {item.name} <br />
-        {item.symbol}
+        {item.name}-{item.symbol}
       </div>
       <div className="mobile">
         <div className="mobile-left">
-          {symbol} {item.current_price?.toLocaleString() || "N/A"}
+          {symbol} {formatValue(item.current_price) || "N/A"}
         </div>
         <div
           aria-label="24H Change"
@@ -65,7 +66,6 @@ function ListingCard({ item, index }: ListingCardProps) {
             parseInt(item.price_change_percentage_24h) < 0 ? "negative" : ""
           }`}
         >
-          <p>{symbol}</p>
           <p>
             {item.price_change_percentage_24h !== undefined
               ? (
@@ -74,19 +74,20 @@ function ListingCard({ item, index }: ListingCardProps) {
                 ).toFixed(2)
               : "N/A"}
           </p>
+          <p>{"%"}</p>
         </div>
       </div>
 
       <div className="desktop">
-        {symbol} {item.current_price?.toLocaleString() || "N/A"}
+        {symbol} {formatValue(item.current_price) || "N/A"}
       </div>
       <div
-        aria-label="24H Change"
-        className={`listing__item-24h desktop${
-          parseInt(item.price_change_percentage_24h) < 0 ? "negative" : ""
+        className={`listing__item-24h desktop ${
+          parseInt(item.price_change_percentage_24h) < 0
+            ? "negative"
+            : "desktop"
         }`}
       >
-        <p>{symbol}</p>
         <p>
           {item.price_change_percentage_24h !== undefined
             ? (
@@ -95,6 +96,7 @@ function ListingCard({ item, index }: ListingCardProps) {
               ).toFixed(2)
             : "N/A"}
         </p>
+        <p>{"%"}</p>
       </div>
       <div className="desktop">
         {symbol} {item.market_cap.toPrecision(5) || "N/A"}

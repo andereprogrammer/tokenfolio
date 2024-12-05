@@ -13,6 +13,7 @@ export type Coin = {
 interface CoinDetails {
   name: string;
   symbol: string;
+  market_cap_rank: number;
   id: string;
   image: {
     thumb: string;
@@ -71,7 +72,7 @@ export const CoinProviderContext = React.createContext<CoinContextType>({
   coinDetails: {
     name: "",
     id: "",
-
+    market_cap_rank: 0,
     symbol: "",
     image: {
       thumb: "",
@@ -107,6 +108,7 @@ export const CoinProvider = ({ children }: { children: ReactNode }) => {
     name: "",
     symbol: "",
     id: "",
+    market_cap_rank: 0,
     image: {
       thumb: "",
       small: "",
@@ -135,9 +137,13 @@ export const CoinProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const fetchCoinDetails = async () => {
       setLoading(true);
-
+      const options = {
+        method: "GET",
+        headers: { accept: "application/json" },
+      };
       const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/${coinId}`
+        `https://api.coingecko.com/api/v3/coins/${coinId}`,
+        options
       );
       const data = await response.json();
       setCoinDetails(data);
