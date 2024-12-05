@@ -1,8 +1,6 @@
-import React from "react";
 import "./../styles/hero.css";
-type Props = {};
 
-function Loader({}: Props) {
+function Loader() {
   return <div className="loading-bar"></div>;
 }
 

@@ -2,12 +2,12 @@ import "./../styles/listing.css";
 import { useCoinContext } from "../hooks/useCoinContext";
 import useSearchCoins from "../hooks/useSearchCoins";
 import ListingCard from "./ListingCard";
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function Listing() {
   const { coins, searchQuery } = useCoinContext();
   const { coinsSearched } = useSearchCoins(coins);
+
   useEffect(() => {
     console.log(searchQuery);
   }, [searchQuery]);

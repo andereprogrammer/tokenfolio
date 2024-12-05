@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import LineChart from "../components/LineChart";
 import { useCoinContext } from "../hooks/useCoinContext";
 import { useEffect } from "react";
 import Coindetails from "../components/Coindetails";

@@ -4,7 +4,7 @@ import { Coin, useCoinContext } from "./useCoinContext";
 const useSearchCoins = (allCoins: Coin[]) => {
   const [coinsSearched, setCoinsSearched] = useState<Coin[]>([]);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
-  const { searchQuery, coins } = useCoinContext();
+  const { searchQuery } = useCoinContext();
 
   useEffect(() => {
     if (searchQuery.trim()) {

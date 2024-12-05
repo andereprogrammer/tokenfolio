@@ -13,10 +13,12 @@ function SearchBar() {
     setSearchTerm("");
     setSearchQuery("");
   };
+
   const handleSearchHisClick = (term: string) => {
     setSearchQuery(term);
     setSearchTerm(term);
   };
+
   const handleKeyInput = (e: any) => {
     setSearchTerm(e.target.value);
     if (e.target.value.length === 0) {

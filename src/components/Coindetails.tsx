@@ -10,6 +10,19 @@ function Coindetails() {
     setLoading(false);
   }
   const symbol = currencySymbols[currency] || currency;
+  const details = [
+    {
+      label: "Price",
+      value: coinDetails?.market_data?.current_price[currency],
+    },
+    {
+      label: "Market Cap",
+      value: coinDetails?.market_data?.market_cap[currency],
+    },
+    { label: "24H High", value: coinDetails?.market_data?.high_24h[currency] },
+    { label: "24H Low", value: coinDetails?.market_data?.low_24h[currency] },
+    { label: "Crypto Market Rank", value: coinDetails?.market_cap_rank },
+  ];
   return (
     <>
       {coinDetails !== undefined || coinDetails !== null ? (
@@ -25,39 +38,17 @@ function Coindetails() {
             />
           </div>
           <LineChart />
+          {details.map((detail, index) => (
+            <p className="details_listing" key={index}>
+              <span>{detail.label}: </span>
+              <span>
+                {detail.value && index < 4
+                  ? `${symbol}${detail.value}`
+                  : detail.value}
+              </span>
+            </p>
+          ))}
 
-          <p className="details_listing">
-            <span>Price: </span>
-            <span>
-              {symbol}
-              {coinDetails?.market_data?.current_price[currency]}
-            </span>
-          </p>
-          <p className="details_listing">
-            <span>Market Cap: </span>
-            <span>
-              {symbol}
-              {coinDetails?.market_data?.market_cap[currency]}
-            </span>
-          </p>
-          <p className="details_listing">
-            <span>24H High: </span>
-            <span>
-              {symbol}
-              {coinDetails?.market_data?.high_24h[currency]}
-            </span>
-          </p>
-          <p className="details_listing">
-            <span>24H Low:</span>{" "}
-            <span>
-              {symbol}
-              {coinDetails?.market_data?.low_24h[currency]}
-            </span>
-          </p>
-          <p className="details_listing">
-            <span>Crypto Market rank : </span>
-            <span>{coinDetails.market_cap_rank}</span>
-          </p>
           <p className="details_listing">
             <p>Website: </p>
             <a

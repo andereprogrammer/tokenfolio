@@ -12,6 +12,7 @@ function Header() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   return (
     <div className="header__container">
       <div className="header__left_container">
