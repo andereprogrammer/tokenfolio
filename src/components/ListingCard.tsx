@@ -62,7 +62,7 @@ function ListingCard({ item, index }: ListingCardProps) {
         </div>
         <div
           aria-label="24H Change"
-          className={`listing__item-24h mobile-left flex-row${
+          className={`listing__item-24h mobile-left flex-row ${
             parseInt(item.price_change_percentage_24h) < 0 ? "negative" : ""
           }`}
         >
